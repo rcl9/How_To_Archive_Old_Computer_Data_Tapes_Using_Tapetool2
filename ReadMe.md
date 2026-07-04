@@ -118,11 +118,11 @@ Note: the Exidy cassette tape block file format can be found at page 17 of the [
 
 ## Step 3 - Using the Files For Data Archaeology
 
-Retrieving the audio data and turning the resulting files into 100% error free (CRC verified) digitial data files was only step one. It was similar to that of uncovering a new archeology find from ancient Egypt which provided few answers or clues as where and what it represented. Likewise, having my [BASEX](https://github.com/rcl9/History-Of-The-BASEX-Compiler-from-the-1979-Era) and Sorcerer Space Invaders digital files in hand was a major first step but provided no clues as to how BASEX worked back in the day or how the 4 key files were related to each other for code execution. That would be another *major* adventure by itself. 
+Retrieving the audio data and turning the resulting files into 100% error free (CRC verified) digitial data files was only step one. It was similar to that of uncovering a new archeology find from ancient Egypt which provided few answers or clues as where and what it represented. Likewise, having my BASEX and Sorcerer Space Invaders digital files in hand was a major first step but provided no clues as to how BASEX worked back in the day or how the 4 key files were related to each other for code execution. That would be another major [adventure by itself](https://github.com/rcl9/History-Of-The-BASEX-Compiler-from-the-1979-Era). 
 
 ## See Also
 
-[TapeTool2](https://www.toptensoftware.com/tapetool) by Topten Software and 
+[TapeTool2](https://www.toptensoftware.com/tapetool) by Topten Software
 
 [TapeTool - A Microbee Tape Diagnotic and Recovery Utility (older open source version)](https://github.com/toptensoftware/tapetool)
 
