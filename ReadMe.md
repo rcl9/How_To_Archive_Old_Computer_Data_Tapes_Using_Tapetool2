@@ -14,7 +14,7 @@ The main problem with this (excellent) utility program is that it does not provi
 
 ## My Objectives
 
-From the late 70's up until late 1981 I had to use the 1200 baud cassette data interface on the Exidy Sorcerer to store all of my software, including the two gruelling years I had spent writing "Sorcerer Space Invaders" in BASIC and then BASEX. I had converted all of my tape-based software collection from tape to 8" disk-based CP/M by early 1982 but not my Space Invaders development environment + files. There may have been reasons that I had chosen not to go through the tedious task of archiving a hundred tape-based files at that time, knowing what I do today. 
+From the late 70's up until late 1981 I had to use the 1200 baud cassette data interface on the Exidy Sorcerer to store all of my software, including the two gruelling years I had spent writing "[Sorcerer Space Invaders](https://github.com/rcl9/Resurrecting-and-Rebuilding-Sorcerer-Space-Invaders-from-1980--BASEX-)" in BASIC and then [BASEX](https://github.com/rcl9/History-Of-The-BASEX-Compiler-from-the-1979-Era). I had converted all of my tape-based software collection from tape to 8" disk-based CP/M by early 1982 but not my Space Invaders development environment + files. There may have been reasons that I had chosen not to go through the tedious task of archiving a hundred tape-based files at that time, knowing what I do today. 
 
 My objective was to "try" and retrieve all of the BASEX and related source files from four 50 year old audio tapes without using my original Exidy Sorcerer to do so. I didn't think it would be possible but I ideally wanted an entirely digital pipeline to take the raw audio tapes into coresponding binary and/or .tape files which I could then mount in the MAME or jSorcerer emulators, and/or to rebuild my original Sorcerer Space Invaders development pipeline. Amazingly, and utterly unbelievably, I did achieve these goals but not without a lot of head banging and sheer determination. 
 
@@ -34,7 +34,7 @@ Overall I found that the data on two tapes sounded (to me) fairly consistent and
 
 This phase was a lot more tricky and with no guaranteed results in advance. Fortunately I was able to retrieve a high percentage of the files error free (based on their CRCs and also some binary file comparisons).
 
-My end result was the script named [convert.btm](/Batch files/convert.btm) which uses the "4DOS/4NT/TCE/Take-Command" scripting language by [JP Software](https://jpsoft.com). This encapsulates my process by which I automated the testing, tweaking and conversion of each .wav file to a binary (.bin), Exidy Sorcerer .tape file and a corresponding text file of what Sorcerer "tape blocks" were found on the tape. I ended up running this script many hundreds of times until I could get a set of error free conversions. 
+My end result was the script named [convert.btm](</Batch files/convert.btm>) which uses the "4DOS/4NT/TCE/Take-Command" scripting language by [JP Software](https://jpsoft.com). This encapsulates my process by which I automated the testing, tweaking and conversion of each .wav file to a binary (.bin), Exidy Sorcerer .tape file and a corresponding text file of what Sorcerer "tape blocks" were found on the tape. I ended up running this script many hundreds of times until I could get a set of error free conversions. 
 
 The first processing stage is to execute TapeTool2 to do these operations:
 
@@ -118,7 +118,7 @@ Note: the Exidy cassette tape block file format can be found at page 17 of the [
 
 ## Step 3 - Using the Files For Data Archaeology
 
-Retrieving the audio data and turning the resulting files into 100% error free (CRC verified) digitial data files was only step one. It was similar to that of uncovering a new archeology find from ancient Egypt which provided few answers or clues as where and what it represented. Likewise, having my BASEX and Sorcerer Space Invaders digital files in hand was a major first step but provided no clues as to how BASEX worked back in the day or how the 4 key files were related to each other for code execution. That would be another *major* adventure by itself. 
+Retrieving the audio data and turning the resulting files into 100% error free (CRC verified) digitial data files was only step one. It was similar to that of uncovering a new archeology find from ancient Egypt which provided few answers or clues as where and what it represented. Likewise, having my [BASEX](https://github.com/rcl9/History-Of-The-BASEX-Compiler-from-the-1979-Era) and Sorcerer Space Invaders digital files in hand was a major first step but provided no clues as to how BASEX worked back in the day or how the 4 key files were related to each other for code execution. That would be another *major* adventure by itself. 
 
 ## See Also
 
