@@ -34,7 +34,7 @@ Overall I found that the data on two tapes sounded (to me) fairly consistent and
 
 This phase was a lot more tricky and with no guaranteed results in advance. Fortunately I was able to retrieve a high percentage of the files error free (based on their CRCs and also some binary file comparisons).
 
-My end result was the script named "[convert.btm](/Batch files/convert.btm)" which uses the "4DOS/4NT/TCE/Take-Command" scripting language by [JP Software](https://jpsoft.com). This encapsulates my process by which I automated the testing, tweaking and conversion of each .wav file to a binary (.bin), Exidy Sorcerer .tape file and a corresponding text file of what Sorcerer "tape blocks" were found on the tape. I ended up running this script many hundreds of times until I could get a set of error free conversions. 
+My end result was the script named [convert.btm](/Batch files/convert.btm) which uses the "4DOS/4NT/TCE/Take-Command" scripting language by [JP Software](https://jpsoft.com). This encapsulates my process by which I automated the testing, tweaking and conversion of each .wav file to a binary (.bin), Exidy Sorcerer .tape file and a corresponding text file of what Sorcerer "tape blocks" were found on the tape. I ended up running this script many hundreds of times until I could get a set of error free conversions. 
 
 The first processing stage is to execute TapeTool2 to do these operations:
 
