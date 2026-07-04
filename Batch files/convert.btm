@@ -1,0 +1,109 @@
+@echo off
+
+:: --------------------
+
+:: Script file to convert .wav audio data files into Exidy Sorcerer .tape files via the TapeTool2 utility program.
+
+:: Written by 'RCL9':
+::	Rob's Retro Computing Archive (RCL9)
+::	RetroComputingArchive@gmail.com
+::	https://github.com/rcl9
+
+:: --------------------
+
+:: This script is written in the "4DOS/4NT/TCE/Take-Command" scripting language by JP Software. I was one of their inital users!
+
+:: This script file loads up a Sorcerer tape .wav file and converts it to:
+::
+:: 	1) A de-blocked binary file which can be executed at the starting address mentioned in the text file of point #2.
+::	2) A text file which shows all of the low-level "tape blocks" from the file + the load address and the resulting execution address.
+::	3) A .tape file which can be loaded via the cassette loading mechanism of the JSorcerer and/or MAME emulator using the sorcerer2.zip ROM ("LO").
+::		Refer to the file "_rcl_start_Sorcerer_monitor.bat" in the MAME home directory.
+::
+::	Other variations allow the audio file to be analyzed for its 1200hz and 600hz tone frequencies. 
+
+:: Note: it is easier and better to use jSorcerer to run .tape files as I could not get it work in MAME:
+::
+::	1) Execute "sorcerer.jar" from "I:\1980s_Computer_Disk_Images_And_Docs\Sorcerer\Emulator\JSorcerer\new2"
+::	2) Click on a Cassette icon on the right side. Load up a .tape file
+::	3) Type "LO" into the monitor
+::		After a few second you should see "Found -- <<name>>"
+::		If there are any issues then either use "SE T=0" or "SE T=1" to set the 300/1200 baud tape speed
+::	4) Take note of the repoted "GOADDR" upon final loading and then do "GO <address>" to execute
+
+:: Note: the Exidy cassette tape block file format can be found at page 17
+::	https://archive.org/details/Exidy_Software_Internals_Manual_1979_Tolomei_Vic/page/n17/mode/2up
+
+IF NOT "%#%" == "1" (
+    echo Error: Invalid number of arguments (need 1)
+    echo Usage: %0 sorcerer_audio_file.wav 
+    quit
+)
+
+:: --------------------
+
+:: To determine the available options for a filter, use --help after the filter name. eg:
+::
+::	tapetool2 smooth --help
+
+
+:: Find the distribution of frequencies in the file
+::
+:: The coding scheme that converts bits to tones and vice versa is documented in the Sorcerer Technical Manual. 
+:: At 300 baud a 0 is encoded as four cycles of a 1200Hz square wave and a 1 is eight cycles at 2400Hz. 
+:: At 1200 baud a 0 is half a cycle at 600Hz and a 1 is one cycle at 1200Hz tone.
+::
+:: tapetool2 --sorcerer %1  analyse > aa
+
+:: Convert to MAME .bin file format, by de-blocking the formatted tape data stream
+:: tapetool2 --sorcerer neg7db.wav bandPass parseAudio --baud:1200 --noiseThreshold:0.1 blocksToMame luna.mame.bin
+
+:: -------------------
+::
+:: *** If you get "Check sum error" then set "USE_NOISE_THRESHOLD= 0" or lower or increase the "threshold" value by a factor of 10.
+::
+
+:: Create a text file of the blocks found in the file and a binary (read to run) file
+:: tapetool2 --sorcerer %1 bandPass parseAudio --baud:1200 --noiseThreshold:0.1 textBlockStreamWriter --filename:%~n1.txt blocksToBytes %~n1.bin
+
+rm %~n1.txt
+rm %~n1.bin
+rm %~n1.tape
+
+:: Set this to 0 or 1 to incorporate noise reduction on the audio signal. You may end up with CHECKSUM errors if you enable it. 
+set USE_NOISE_THRESHOLD= 0
+:: And this the threshold value. A value of 0.1 or 0.5 is okay. 
+set NOISE_THRESHOLD=0.05
+
+:: (1) Take the raw audio file and apply bandpass filtering + noise smoothing.
+:: (2) Parse the audio as a 300/1200 baud stream into a bye stream
+:: (3) "De-block" the byte stream using the Exidy tape format CRC-based block-based format. This becomes the "block stream" for TapeTool2
+:: (4) Write a text file of the blocks and header info found in the file, especially the loading address + execution address.
+:: (5) Save out a binary image of the file which can be executed via CP/M. Note: you need to offset it to the starting address relative to 0x100.
+if %USE_NOISE_THRESHOLD% EQ 1 (
+	tapetool2 --sorcerer %1 ^
+		bandPass parseAudio --baud:1200 --noiseThreshold:%NOISE_THRESHOLD% ^
+		textBlockStreamWriter --filename:%~n1.txt ^
+		unpackData %~n1.bin
+) else (
+	tapetool2 --sorcerer %1 ^
+		bandPass parseAudio --baud:1200 ^
+		textBlockStreamWriter --filename:%~n1.txt ^
+		unpackData %~n1.bin
+)
+
+:: This also creates a jSorcerer compatible .tape file which is basically a 100% digital byte copy of the cassette data stream (in Exidy "block" format + CRCs)
+:: This file can then be loaded into MAME via its cassette interface for the Exidy Monitor 1.0
+echo '
+echo '
+rm out.bin
+if %USE_NOISE_THRESHOLD% EQ 1 (
+	tapetool2 --sorcerer %1 ^
+		bandPass audioToBytes --baud:1200 --noiseThreshold:%NOISE_THRESHOLD% ^
+		out.bin
+) else (
+	tapetool2 --sorcerer %1 ^
+		bandPass audioToBytes --baud:1200 ^
+		out.bin
+)
+ren out.bin %~n1.tape
