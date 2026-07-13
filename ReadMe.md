@@ -2,6 +2,8 @@
 
 This repository captures  my experience with retrieving and archiving early 1980's Exidy Sorcerer data tapes and directly converting them to binary, Exidy Sorcerer .tape format and a related de-blocked text files. If I had access to this repo before starting my project then it woud have saved me a good day or two of head banging and head scratching. 
 
+However, much more importantly for an Exidy Sorcerer user (or other retro-computer enthusiasts) reading this tutorial, I provide a well defined batch script file named "convert.bat" which will quickly convert an Exidy Sorcerer 300 or 1200 baud .wav file into a corresponding binary (for CP/M usage) and .tape file (for jSorcerer or MAME usage). Other sites on the Internet often provide dozens of 1980s software downloads in .wav audio file format but no simple method to convert them into runnable files for the Sorcerer. 
+
 <div style="text-align:center">
 <img src="/Images/Tutorial.webp" alt="" style="width:75%; height:auto;">
 </div>
